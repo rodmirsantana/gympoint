@@ -61,6 +61,10 @@ class StudentController {
 
     const student = await Student.findByPk(req.userId);
 
+    if (!student) {
+      return res.status(400).json({ error: 'Student not found' });
+    }
+
     if (email !== student.email) {
       const studentExists = await Student.findOne({ where: { email } });
 
