@@ -26,5 +26,6 @@ routes.put('/students', StudentController.update);
 routes.post('/students', StudentController.store);
 
 routes.get('/enrollments', EnrollmentController.index);
+routes.post('/enrollments', EnrollmentController.store);
 
 export default routes;
