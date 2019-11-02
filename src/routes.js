@@ -22,8 +22,10 @@ routes.delete('/plans/:id', PlanController.delete);
 
 routes.put('/users', UserController.update);
 
+routes.get('/students', StudentController.index);
 routes.put('/students', StudentController.update);
 routes.post('/students', StudentController.store);
+routes.delete('/students/:id', StudentController.delete);
 
 routes.get('/enrollments', EnrollmentController.index);
 routes.put('/enrollments/:id', EnrollmentController.update);

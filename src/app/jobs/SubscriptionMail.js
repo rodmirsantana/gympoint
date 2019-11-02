@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
 import Mail from '../../lib/Mail';
@@ -19,7 +19,7 @@ class SubscriptionMail {
         student: enroll.student.name,
         plan: enroll.plan.title,
         price: `R$ ${enroll.price}`,
-        end_date: format(enroll.end_date, "dd 'de' MMMM 'de' yyyy", {
+        end_date: format(parseISO(enroll.end_date), "dd 'de' MMMM 'de' yyyy", {
           locale: pt,
         }),
       },

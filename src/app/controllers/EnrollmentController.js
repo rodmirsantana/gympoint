@@ -3,8 +3,9 @@ import { parseISO, addMonths, isBefore } from 'date-fns';
 import Enrollment from '../models/Enrollment';
 import Student from '../models/Student';
 import Plan from '../models/Plan';
+import Queue from '../../lib/Queue';
 
-import sendMail from '../jobs/SubscriptionMail';
+import SubscriptionMail from '../jobs/SubscriptionMail';
 
 class EnrollmentController {
   async index(req, res) {
@@ -98,7 +99,9 @@ class EnrollmentController {
       ],
     });
 
-    await sendMail.handle({ data: { enroll: newEnrollment } });
+    await Queue.add(SubscriptionMail.key, {
+      enroll: newEnrollment,
+    });
 
     return res.json(newEnrollment);
   }
